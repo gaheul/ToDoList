@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.springboot.todolist.domain.todolist.ToDoListRepository">
+  
+  	<insert id="insertToDoList" parameterType="com.springboot.todolist.domain.todolist.ToDoListMst"
+  	useGeneratedKeys="true" keyProperty="id">
+  		insert into
+  			todolist_mst
+  		values(
+  			0,
+  			null,
+  			#{content},
+  			now(),
+  			now()
+  		);
+  	</insert>
+  
+  
+  </mapper>
