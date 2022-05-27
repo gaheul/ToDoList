@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ToDoListInsertReqDto {
+public class ToDoListUpdateReqDto {
 	@NotBlank
 	private String content;
 	
-	public ToDoListMst toEntity() {
+	public ToDoListMst toUpdateEntity(int id) {
 		return ToDoListMst.builder()
-				
+				.id(id)
 				.content(content)
 				.build();
 	}
