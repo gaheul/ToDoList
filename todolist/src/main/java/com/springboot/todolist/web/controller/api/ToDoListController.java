@@ -44,13 +44,13 @@ public class ToDoListController {
 	//내용추가
 	@PostMapping("/todo")
 	public ResponseEntity<?> addToDO(@Valid @RequestBody ToDoListInsertReqDto todoListInsertReqDto,BindingResult bindingResult){
-		if(bindingResult.hasErrors()) {
-			Map<String, String> errorMap = new HashMap<String, String>();
-			for(FieldError error : bindingResult.getFieldErrors()) {
-				errorMap.put(error.getField(), error.getDefaultMessage());
-			}
-			return new ResponseEntity<>(new CMRespDto<Map<String, String>>(-1,"추가실패",errorMap) ,HttpStatus.BAD_REQUEST);
-		}
+//		if(bindingResult.hasErrors()) {
+//			Map<String, String> errorMap = new HashMap<String, String>();
+//			for(FieldError error : bindingResult.getFieldErrors()) {
+//				errorMap.put(error.getField(), error.getDefaultMessage());
+//			}
+//			return new ResponseEntity<>(new CMRespDto<Map<String, String>>(-1,"추가실패",errorMap) ,HttpStatus.BAD_REQUEST);
+//		}
 		int id =toDoListService.createToDoList(todoListInsertReqDto);
 		return new ResponseEntity<>(new CMRespDto<Integer>(1,"추가성공",id) ,HttpStatus.OK);
 	}
@@ -58,14 +58,14 @@ public class ToDoListController {
 	//내용수정
 	@PutMapping("/todo/{id}")
 	public ResponseEntity<?> modifiToDO(@PathVariable int id,@Valid @RequestBody ToDoListUpdateReqDto toDoListUpdateReqDto,BindingResult bindingResult){
-		if(bindingResult.hasErrors()) {
-			Map<String, String> errorMap = new HashMap<String, String>();
-			for(FieldError error : bindingResult.getFieldErrors()) {
-				errorMap.put(error.getField(), error.getDefaultMessage());
-			}
-			return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
-		}
-		
+//		if(bindingResult.hasErrors()) {
+//			Map<String, String> errorMap = new HashMap<String, String>();
+//			for(FieldError error : bindingResult.getFieldErrors()) {
+//				errorMap.put(error.getField(), error.getDefaultMessage());
+//			}
+//			return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
+//		}
+//		
 		int resultId =toDoListService.updateToDoLiST(id, toDoListUpdateReqDto);
 		return new ResponseEntity<>(resultId, HttpStatus.OK);
 	}

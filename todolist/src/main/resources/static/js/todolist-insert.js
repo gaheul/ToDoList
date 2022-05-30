@@ -3,6 +3,7 @@
  const todoBtn = document.querySelector('.todo-btn');
  const content = document.querySelector('.content');
 
+
  
  
  load();
@@ -42,10 +43,29 @@
 	
 	const updateBtn = document.querySelectorAll('.update-btn');
 	const deleteBtn = document.querySelectorAll('.delete-btn');
+	const listCon = document.querySelectorAll('.list-con');
 	
 	for(let i =0; i<updateBtn.length; i++){
 		updateBtn[i].onclick = () =>{
 			alert("수정");
+			
+			let url = `api/v1/todo/${result[i].id}`;
+			let option = {
+				method: "PUT",
+				headers: {
+					"Conntent-Type":"application/json"
+				},
+				body: JSON.stringify({
+					content:listCon[i].textContent
+				})
+			}
+			fetch(url,option)
+			.then(result => {
+				console.log(result)
+			})
+			.catch(error => {
+				console.log(error)
+			})
 			
 		}
 		deleteBtn[i].onclick = () =>{
@@ -65,7 +85,7 @@
 				}
 			})
 			.then(result => {
-				console.log(result);
+				load(result);
 			})
 			.catch(error=> console.log(error));
 		}
